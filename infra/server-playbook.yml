@@ -1,0 +1,7 @@
+---
+- hosts: puppet-server
+
+  roles:
+    - common
+#    - puppet-server
+
