@@ -30,10 +30,9 @@ vagrant up
 
 ##ServerSpec
 
-To run the serverspec tests, do the following:
+To run the serverspec tests, do the following at root level:
 
 ```bash
 bundle
-cd spec
 rake spec
 ```
