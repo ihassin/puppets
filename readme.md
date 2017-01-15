@@ -27,3 +27,13 @@ After adding your _public_ key, you can ssh to the VMs using:
 cd infra
 vagrant up
 ```
+
+##ServerSpec
+
+To run the serverspec tests, do the following:
+
+```bash
+bundle
+cd spec
+rake spec
+```
