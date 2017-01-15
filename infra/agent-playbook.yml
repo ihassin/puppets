@@ -3,5 +3,5 @@
 
   roles:
     - common
-#    - puppet-agent
+    - puppet-agent
 

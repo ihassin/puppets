@@ -1,0 +1,12 @@
+---
+  - name: Install needed packages
+    apt: pkg={{item}} state=installed
+    with_items:
+      - puppetmaster
+      - apache2
+      - nginx
+      - puppet-el
+      - ruby-ldap
+      - ruby-stomp
+      - stompserver
+      - vim-puppet

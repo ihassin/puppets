@@ -3,5 +3,5 @@
 
   roles:
     - common
-#    - puppet-server
+    - puppet-server
 

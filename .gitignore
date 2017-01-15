@@ -44,4 +44,5 @@ crashlytics-build.properties
 fabric.properties
 
 .vagrant/
+*.retry
 
