@@ -13,37 +13,32 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.define "puppet-server" do |web|
-    web.vm.hostname = "puppet-server"
-    web.vm.network "private_network", ip: "33.33.44.11"
-    web.vm.provider "virtualbox" do |provider|
+  config.vm.define "puppet-server" do |server|
+    server.vm.hostname = "puppet-server"
+    server.vm.network "private_network", ip: "33.33.44.11"
+    server.vm.provider "virtualbox" do |provider|
       provider.name = "puppet-server"
       provider.customize ["modifyvm", :id, "--memory", "1024"]
     end
 
-    web.vm.provision "ansible" do |ansible|
-      ansible.playbook = "server-playbook.yml"
-      ansible.inventory_path = "inventory.ini"
-      ansible.host_key_checking = false
-      ansible.sudo = true
-    end
-
   end
 
-  config.vm.define "puppet-agent" do |db|
-    db.vm.hostname = "puppet-agent"
-    db.vm.network "private_network", ip: "33.33.44.22"
-    db.vm.provider "virtualbox" do |provider|
+  config.vm.define "puppet-agent" do |agent|
+    $script = <<SCRIPT
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
+sudo dpkg -i puppetlabs-release-pc1-trusty.deb 
+sudo apt-get -i update
+sudo apt-get -y autoremove
+sudo apt-get install -y puppet-agent
+SCRIPT
+
+    agent.vm.hostname = "puppet-agent"
+    agent.vm.network "private_network", ip: "33.33.44.22"
+    agent.vm.provider "virtualbox" do |provider|
       provider.name = "puppet-agent"
       provider.customize ["modifyvm", :id, "--memory", "1024"]
     end
-
-    db.vm.provision "ansible" do |ansible|
-      ansible.playbook = "agent-playbook.yml"
-      ansible.inventory_path = "inventory.ini"
-      ansible.host_key_checking = false
-      ansible.sudo = true
-    end
+    config.vm.provision "shell", inline: $script
 
   end
 

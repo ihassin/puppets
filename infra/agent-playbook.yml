@@ -1,7 +1,0 @@
----
-- hosts: puppet-agent
-
-  roles:
-    - common
-    - puppet-agent
-

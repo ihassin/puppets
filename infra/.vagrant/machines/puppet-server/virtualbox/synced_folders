@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/ThoughtWorks/Documents/projects/infra/puppet/infra","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/ThoughtWorks/Documents/projects/infra/puppets/infra","disabled":false,"__vagrantfile":true}}}
